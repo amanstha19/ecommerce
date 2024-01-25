@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    
 
     <div class="page-nav no-margin row">
         <div class="container">
@@ -27,51 +28,65 @@
         <div class="container-xl">
             <div class="row">
                 <div class="col-md-3">
+                    <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="search-button" type="submit">Search</button>
+                    </form>
                     <!-- Your filter by category, price range, and brand code goes here -->
+
+                  
+
                 </div>
+                
                 <div class="col-md-9">
-                    <div class="row">
-                        {% for prod in products %}
-
-                        <div class="col-lg-4 col-sm-6 mb-4">
-                            <div class="bg-white p-2 shadow-md">
-                                <div class="text-center">
-                                    <a href="detail.html">
-                                        <img src="/{{prod.image}}" alt="">
-                                    </a>
-                                </div>
-                                <div class="detail p-2">
-                                    <h4 class="mb-1 fs-5 fw-bold">{{prod.name |truncatechars:40}}</h4>
-
-                                    <s class="fs-5 ps-3">{{prod.price }}</s>
-
-                                    <ul class="mt-0 vgth">
-                                        <li class="fs-8">
-                                            <i class="bi text-warning bi-star-fill"></i>
-                                            <i class="bi text-warning bi-star-fill"></i>
-                                            <i class="bi text-warning bi-star-fill"></i>
-                                            <i class="bi text-warning bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                        </li>
-                                        <li class="float-end gvi">
-                                            <i class="bi text-danger bi-heart-fill"></i>
-                                        </li>
-                                    </ul>
-                                    <div class="row pt-2">
-                                        <div class="col-md-6">
-                                            <a href="detail.html">
-                                                <button class="btn mb-2 fw-bold w-100 btn-danger">Buy Now</button>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <button class="btn fw-bold w-100 btn-outline-danger">Add to Cart</button>
-                                        </div>
-                                    </div>
+                    <div class="filter-container">
+                        <h2>Filter Products</h2>
+                        <form id="filter-form">
+                            <div class="form-group">
+                                <label for="category">Category:</label>
+                                <select name="category" id="category">
+                                    <option value="">All</option>
+                                    <option value="electronics">Electronics</option>
+                                    <option value="clothing">Clothing</option>
+                                    <option value="furniture">Furniture</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="price-range">Price Range:</label>
+                                <input type="number" name="min-price" id="min-price" placeholder="Min">
+                                <input type="number" name="max-price" id="max-price" placeholder="Max">
+                            </div>
+                            <div class="form-group">
+                                <label for="brand">Brand:</label>
+                                <input type="text" name="brand" id="brand">
+                            </div>
+                            <button type="submit">Filter</button>
+                        </form>
+                    </div>
+                    
+                    <div class="content">
+                        <div class="product-container">
+                    
+                            {% for prod in products %}
+                            <div class="product-box">
+                                <img src="/{{prod.image}}" alt="{{prod.name}}" class="product-image">
+                                <div class="product-name">{{prod.name |truncatechars:40}}</div>
+                                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                                <div class="price">{{prod.price }}</div>
+                                <div class="action-buttons">
+                                    <a href="detail.html" class="btn btn-danger">Buy Now</a>
+                                    <button class="btn btn-outline-danger">Add to Cart</button>
                                 </div>
                             </div>
+                            {% endfor %}
+                    
                         </div>
-                        {% endfor %}
-
+                    </div>
+                    <div class="between" id="filter-section">
+                        <input type="text" placeholder="Search..." class="search-bar">
+                        <button type="submit" class="search-button">Search</button>
+                        <button type="button" class="filter-button" id="filter-section-btn" >Filter</button>
+                    
                         <div class="row ">
                             <nav class="" aria-label="...">
                                 <ul class="pagination justify-content-end">
