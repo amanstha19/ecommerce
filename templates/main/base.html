@@ -10,28 +10,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-</head>
+     </head>
 <body> 
     <header>
         <nav class="nav2">
             <div class="nav2-left">
                 <img src="{% static 'images/logo.png' %}" alt="Upahar Nepal Logo" class="logo">
                 <h1>Upahar<span>Nepal</span></h1>
-            </div>
+                
+                </div>
             <div class="nav2-right">
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="search-button" type="submit">Search</button>
                 </form>
                 <button type="button" class="login-register"><a href="{% url 'register' %}"> Login/Register</a></button>
+                   
             </div>
-        </nav>
+            <div class="aboutus">
         
+                <a href="{% static 'html/aboutus.html' %}">About Us</a>
+            </div>  
+        </nav>
+        <div class="hover">
+        
+            <marquee scrollamount="16"> sale! sale! sale! </marquee>
+        </div>  
+    
             <script>
                 document.getElementById('filter-section-btn').addEventListener('click', function() {
                     document.getElementById('filter-section').scrollIntoView({ behavior: 'smooth' });
                 });
             </script>
+        
 
         <!-- naya nav suru hunxa yaha bata -->
 

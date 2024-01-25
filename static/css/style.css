@@ -206,6 +206,22 @@ header {
   cursor: pointer;
   color: #fff;
 }
+/*
+ .aboutus {
+    margin-left: auto; /* Pushes "About Us" to the right */
+ /*  order: 1;
+   align-items:end ; /*Aligns "About Us" to the top within .nav2 */
+/*}*/
+
+.aboutus a {
+    color: #ffffff; /* Set the color as needed */
+    text-decoration: none;
+    padding: 10px;
+}
+.hover {
+   color:red;
+   font-weight: bold;
+}
 
 .nav3 {
   background-color: #fff; /* Background color */
