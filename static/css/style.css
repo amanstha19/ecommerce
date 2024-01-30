@@ -374,9 +374,7 @@ button {
   cursor: pointer;
   text-decoration: none;
 }
-.nav2-left{
-  text-decoration: none;
-}
+
 
 
 @media only screen and (max-width: 1200px) {
