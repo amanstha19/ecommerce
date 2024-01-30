@@ -19,6 +19,8 @@ def HOME(request):
 
     return render(request, 'main/index.html', context)
 
+def userprofile(request):
+    return render(request, 'main/userprofile.html')
 def product(request):
     products = Product.objects.all()
 
@@ -57,6 +59,6 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            return redirect('home')
+            return redirect('userprofile')
         else:
             return render(request, 'register/auth.html', {'error_message': 'Invalid login credentials'})

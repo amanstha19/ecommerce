@@ -154,17 +154,13 @@ header {
   margin-bottom: 10px;
 }
 
-.nav2 .nav2-left h1 {
-  color: #fff;
-  font-weight: bold;
-  letter-spacing: 2px;
-  margin: 0;
-}
+
 
 .nav2 .nav2-left h1 span {
   color: var(--secondary);
   font-weight: bold;
   letter-spacing: 2px;
+  
 }
 
 .nav2 .between {
@@ -297,71 +293,48 @@ header {
 .footer {
   background-color: #333;
   color: #fff;
-  justify-content: space-between;
-}
-
-
-
-/* .nav3 {
-  background-color: #333;
-  padding: 10px;
-}
-
-.nav3 ul {
-  list-style: none;
-  display: flex;
   justify-content: center;
 }
-
-.nav3 li {
-  z-index: 99;
-  position: relative;
-  margin: 0 15px;
-}
-
-.nav3 a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.nav3 i {
-  margin-right: 5px;
-}
-
-.nav3 ul li:hover {
-  color: var(--primary);
-}
-
-.nav3 ul ul {
-  display: none;
-  background-color: auto;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  color: var(--secondary);
+.nav2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
   background-color: #8399ee;
-  border-radius: 22px;
 }
 
-.nav3 li {
-  position: relative;
+.nav2 .nav2-left {
+  display: flex;
+  align-items: center;
 }
 
-.nav3 ul ul {
-  z-index: 999;
+.nav2 .nav2-left .logo {
+  width: 50px; /* Adjust the width as needed */
+  height: auto;
+  margin-right: 10px; /* Add spacing between the logo and text */
 }
 
-.nav3 ul ul {
-  width: 170px;
+.nav2 .nav2-right {
+  display: flex;
+  align-items: center;
 }
 
-.nav3 ul li:hover>ul {
-  display: block;
-} */
+.search-button {
+  border: #413d3d solid 0.5px;
+  border-radius: 9px;
+  margin-left: 3px;
+}
 
-/* Merged styles from the previous code */
+.search-button:hover {
+  background-color: rgb(202, 194, 194);
+}
+
+
+
+.nav2 .nav2-right button {
+  margin-left: 20px; /* Add spacing between the search button and login/register button */
+}
+
 
 .featured img {
   width: 100%;
@@ -393,12 +366,16 @@ select {
 }
 
 button {
-  padding: 10px 20px;
-  background-color: #007bff;
+  padding: 10px 15px;
+  background-color: #ba0a22;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  text-decoration: none;
+}
+.nav2-left{
+  text-decoration: none;
 }
 
 
@@ -433,6 +410,7 @@ button {
   .nav2 .nav2-left {
     text-align: center;
   }
+  
 }
 .navbar {
   justify-content: space-between;
@@ -446,7 +424,7 @@ button {
 .navbar .login-register a {
   color: #333;
   text-decoration: none;
-  margin-left: 15px;
+  margin-left: 20px;
 }
 
 .search-form {
@@ -473,6 +451,9 @@ button {
   border: 1px solid #ddd;
   padding: 20px;
   margin-bottom: 20px;
+}
+.product-box:hover{
+  background-color: #8995c4;
 }
 .product-box img{
   max-height: 200px;
@@ -578,5 +559,64 @@ button {
 }
 
 .nav2 .nav2-right button {
-  margin-left: 10px; /* Add spacing between the search button and login/register button */
+  margin-left: 10px;
+  text-decoration: none;
+   /* Add spacing between the search button and login/register button */
 }
+/* shop now in user section */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.product {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.product-image {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.product-name {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.product-price {
+  margin-top: 5px;
+  color: #888;
+}
+
+.btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+.nav1 .left .register a,
+.nav2 .between button.search-button {
+  background-color: #f5f5dc; /* Beige-ish color */
+  color: #333; /* Text color */
+  border: none;
+  text-decoration: none; /* Remove underline */
+}
+
+.nav1 .left .register a:hover,
+.nav2 .between button.search-button:hover {
+  background-color: #dcdcbf; /* Darker shade on hover */
+} 
