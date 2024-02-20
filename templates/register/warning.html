@@ -1,48 +1,30 @@
-<button onclick="showDialog()">Show Warning</button>
-
-<div id="dialog" class="dialog">
-  <p>Enter valid credentials</p>
-  <button onclick="closeDialog()">OK</button>
+<html>
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+    <div id="warning" class="warning-popup">
+        Invalid credentials. Please try again.
+    </div>
 </div>
 
-<style>
-.dialog {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .dialog p {
-    margin: 0 0 10px;
-  }
-  
-  .dialog button {
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .dialog button:hover {
-    background-color: #0056b3;
-  }
-  </style>
+<script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
 
-  <script> 
-         function showDialog() {
-         var dialog = document.getElementById('dialog');
-         dialog.style.display = 'block';
-         }
-  
-        function closeDialog() {
-          var dialog = document.getElementById('dialog');
-            dialog.style.display = 'none';
-        }
-  </script>
+    // Simulate authentication check
+    if (username !== "validUsername" || password !== "validPassword") {
+        event.preventDefault(); // Prevent form submission
+        document.getElementById("warning").style.display = "block"; // Show warning popup
+        setTimeout(function() {
+            document.getElementById("warning").style.display = "none"; // Hide warning popup after 3 seconds
+        }, 3000);
+    }
+});
+
+</script>
+</html>
