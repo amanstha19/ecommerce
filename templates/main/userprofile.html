@@ -3,7 +3,7 @@
 
 {% load static %}
 
-<div class="container" id="container">
+<<div class="container" id="container">
     <div class="form-container sign-in">
 
         <div class="profile-page">
@@ -14,6 +14,7 @@
                 <div class="user-details">
                     <h2>Welcome, {{ user.username }}</h2>
                     <p>Contact: {{ user.email }}</p>
+                    <p>Member Since: {{ user.date_joined|date:"F Y" }}</p>
                     <!-- Add any additional user information here -->
                 </div>
             </div>
@@ -68,6 +69,24 @@
                     <!-- Add more delivery items as needed -->
                 </div>
             </div>
+
+            <!-- New Content Section 1: Wishlist -->
+            <div class="wishlist-section">
+                <h3>Wishlist</h3>
+                <div class="wishlist-items">
+                    <!-- Add wishlist items here -->
+                    <p>No items added to wishlist yet.</p>
+                </div>
+            </div>
+
+            <!-- New Content Section 2: Recommendations -->
+            <div class="recommendations-section">
+                <h3>Recommendations</h3>
+                <div class="recommendation-items">
+                    <!-- Add recommended products or suggestions here -->
+                    <p>Check back later for personalized recommendations.</p>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -90,7 +109,8 @@
         align-items: center;
         justify-content: space-between;
         padding: 20px;
-        background-color: beige; /* Beige theme */
+        background-color: #f0f0f0; /* Light gray background */
+        border-bottom: 1px solid #ccc; /* Add border for separation */
     }
 
     /* Style the user avatar */
@@ -121,7 +141,7 @@
         display: flex;
         justify-content: space-around;
         margin-top: 20px;
-        background-color: beige; /* Beige theme */
+        background-color: #35adc2; /* Light gray background */
         padding: 10px 0;
     }
 
@@ -139,14 +159,14 @@
     }
 
     /* Style the order history and pending deliveries sections */
-    .order-history-section, .pending-deliveries-section {
-        background-color: beige; /* Beige theme */
+    .order-history-section, .pending-deliveries-section, .wishlist-section, .recommendations-section {
+        background-color: #f9f9f9; /* Lighter background color */
         padding: 20px;
         margin-top: 20px;
         border-radius: 10px;
     }
 
-    .order-history-section h3, .pending-deliveries-section h3 {
+    .order-history-section h3, .pending-deliveries-section h3, .wishlist-section h3, .recommendations-section h3 {
         color: #333; /* Dark text color */
     }
 
@@ -169,7 +189,7 @@
 
     /* Additional styles for the footer */
     .footer {
-        background-color: beige; /* Beige theme */
+        background-color: #35adc2; /* Light gray background */
         color: #333; /* Dark text color */
         padding: 20px;
         text-align: center;
@@ -178,19 +198,6 @@
         width: 100%;
     }
 </style>
-
-<script>
-    const container = document.getElementById('container');
-    const registerBtn = document.getElementById('register');
-    const loginBtn = document.getElementById('login');
-
-    registerBtn.addEventListener('click', () => {
-        container.classList.add("active");
-    });
-
-    loginBtn.addEventListener('click', () => {
-        container.classList.remove("active");
-    });
-</script>
+   
 
 {% endblock %}
