@@ -1,162 +1,75 @@
-{% extends 'main/base.html' %}
 
 {% block content %}
 
 {% load static %}
 
-<div class="profile-page">
-    <div class="gift-background">
-        <!-- Gift-themed background image -->
-    </div>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+<div class="container" id="container">
+    <div class="form-container sign-in">
 
-        .header {
-            background-color: #111;
-            padding: 10px;
-            text-align: center;
-            color: white;
-        }
-
-        .dashboard-container {
-            display: grid;
-            grid-template-columns: 250px auto;
-            height: calc(100vh - 40px); /* Adjust for header height */
-        }
-
-        .sidebar {
-            background-color: #f3e9dd;
-            padding-top: 20px;
-        }
-
-        .sidebar a {
-            padding: 15px 10px;
-            text-decoration: none;
-            font-size: 18px;
-            color: #818181;
-            display: block;
-        }
-
-        .sidebar a:hover {
-            color: #f1f1f1;
-        }
-
-        .content {
-            padding: 16px;
-            overflow-y: auto; /* Add scrollbar if content overflows */
-        }
-
-        .product-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .product-box {
-            text-align: center;
-            border: 1px solid #ddd;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .product-box img{
-            max-height: 200px;
-        }
-        .product-image {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .product-name {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        .stars {
-            color: gold;
-        }
-
-        .price {
-            margin-top: 10px;
-            font-size: 18px;
-        }
-        .search-button{
-            border: #413d3d solid 0.5px;
-            border-radius: 9px;
-            margin-left: 3px;
-        }
-        .search-button:hover{
-            background-color: rgb(202, 194, 194);
-    
-        }
-        .sidebar a:hover .dash {
-            color: black; 
-        }
-        .sidebar a:hover {
-            color: black;
-        }
-
-    </style>
-    <div class="dashboard-container">
-        <div class="sidebar">
-            <a href="./home.html">
-                <i class="fas fa-home dash"></i> Home
-            </a>
-            <a href="./pricing.html">
-                <i class="fas fa-dollar-sign dash"></i> Pricing
-            </a>
-            <a href="./cart.html">
-                <i class="fas fa-shopping-cart dash"></i> Cart
-            </a>
-            <a href="#">
-                <i class="fas fa-birthday-cake dash"></i> Occasions
-            </a>
-        </div>
-        
-
-    <div class="shop-now-section">
-        <h2>Shop Now</h2>
-        <div class="product-grid">
-            <!-- Product 1 -->
-            <div class="product">
-                <img src="{% static 'images/product1.jpg' %}" alt="Product 1" class="product-image">
-                <h3 class="product-name">Hoodie Set</h3>
-                <p class="product-price">Rs 2500</p>
-                <button class="btn btn-primary">Add to Cart</button>
+        <div class="profile-page">
+            <div class="profile-header">
+                <div class="user-avatar">
+                    <img src="{% static 'images/avatar.jpg' %}" alt="User Avatar" class="avatar-image">
+                </div>
+                <div class="user-details">
+                    <h2>Welcome, {{ user.username }}</h2>
+                    <p>Contact: {{ user.email }}</p>
+                    <!-- Add any additional user information here -->
+                </div>
             </div>
-            
-            <!-- Product 2 -->
-            <div class="product">
-                <img src="{% static 'images/product2.jpg' %}" alt="Product 2" class="product-image">
-                <h3 class="product-name">Charm Bracelet</h3>
-                <p class="product-price">Rs 2000</p>
-                <button class="btn btn-primary">Add to Cart</button>
+
+            <div class="navigation-links">
+                <a href="#">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="#">
+                    <i class="fas fa-dollar-sign"></i> Pricing
+                </a>
+                <a href="#">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                </a>
+                <a href="#">
+                    <i class="fas fa-birthday-cake"></i> Occasions
+                </a>
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
             </div>
-            
-            <!-- Product 3 -->
-            <div class="product">
-                <img src="{% static 'images/product3.jpg' %}" alt="Product 3" class="product-image">
-                <h3 class="product-name">Perfume Set</h3>
-                <p class="product-price">Rs 3000</p>
-                <button class="btn btn-primary">Add to Cart</button>
+
+            <div class="order-history-section">
+                <h3>Order History</h3>
+                <div class="order-list">
+                    <div class="order-item">
+                        <p>Order ID: 123456</p>
+                        <p>Date: January 15, 2024</p>
+                        <p>Products:</p>
+                        <ul>
+                            <li>Hoodie Set - Rs 2500</li>
+                            <li>Charm Bracelet - Rs 2000</li>
+                            <!-- Add more products as needed -->
+                        </ul>
+                    </div>
+                    <!-- Add more order items as needed -->
+                </div>
             </div>
-            
-            <!-- Add more products as needed -->
-        </div>
-    </div>
-    
-        <div class="order-status-section">
-            <h2>Order Status</h2>
-            <!-- Content for the order status section -->
+
+            <div class="pending-deliveries-section">
+                <h3>Pending Deliveries</h3>
+                <div class="delivery-list">
+                    <div class="delivery-item">
+                        <p>Order ID: 789012</p>
+                        <p>Expected Delivery Date: February 10, 2024</p>
+                        <p>Products:</p>
+                        <ul>
+                            <li>Perfume Set - Rs 3000</li>
+                            <!-- Add more products as needed -->
+                        </ul>
+                    </div>
+                    <!-- Add more delivery items as needed -->
+                </div>
+            </div>
         </div>
 
-        <div class="payment-details-section">
-            <h2>Payment Details</h2>
-            <!-- Content for the payment details section -->
-        </div>
     </div>
 </div>
 
@@ -169,5 +82,115 @@
         <p>&copy; 2024 Upahar Nepal. All rights reserved.</p>
     </div>
 </footer>
+
+<style>
+    /* Apply styles for profile header */
+    .profile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: beige; /* Beige theme */
+    }
+
+    /* Style the user avatar */
+    .user-avatar {
+        width: 50px;
+        height: 50px;
+        overflow: hidden;
+        border-radius: 50%;
+    }
+
+    .avatar-image {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Style the user details */
+    .user-details {
+        margin-left: 20px;
+    }
+
+    .user-details h2, .user-details p {
+        color: #333; /* Dark text color */
+        margin: 5px 0;
+    }
+
+    /* Style the navigation links */
+    .navigation-links {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        background-color: beige; /* Beige theme */
+        padding: 10px 0;
+    }
+
+    .navigation-links a {
+        color: #333; /* Dark text color */
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .navigation-links a:hover {
+        background-color: #ddd; /* Lighter background color on hover */
+    }
+
+    /* Style the order history and pending deliveries sections */
+    .order-history-section, .pending-deliveries-section {
+        background-color: beige; /* Beige theme */
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+    }
+
+    .order-history-section h3, .pending-deliveries-section h3 {
+        color: #333; /* Dark text color */
+    }
+
+    .order-item, .delivery-item {
+        margin-bottom: 20px;
+    }
+
+    .order-item p, .delivery-item p {
+        margin: 0;
+    }
+
+    .order-item ul, .delivery-item ul {
+        padding: 0;
+        margin-top: 5px;
+    }
+
+    .order-item ul li, .delivery-item ul li {
+        margin-left: 20px;
+    }
+
+    /* Additional styles for the footer */
+    .footer {
+        background-color: beige; /* Beige theme */
+        color: #333; /* Dark text color */
+        padding: 20px;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
+
+<script>
+    const container = document.getElementById('container');
+    const registerBtn = document.getElementById('register');
+    const loginBtn = document.getElementById('login');
+
+    registerBtn.addEventListener('click', () => {
+        container.classList.add("active");
+    });
+
+    loginBtn.addEventListener('click', () => {
+        container.classList.remove("active");
+    });
+</script>
 
 {% endblock %}
