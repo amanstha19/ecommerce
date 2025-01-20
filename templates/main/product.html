@@ -1,88 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-
-
     {% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upahar</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>UpaharNepal - Making Gift-Giving a Breeze</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-</head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        :root {
+            --primary: #6B4EE6;
+            --primary-dark: #5740B3;
+            --secondary: #FF6B6B;
+            --tertiary: #4ECDC4;
+            --background: #F8F9FA;
+            --text: #2D3436;
+            --light-text: #636E72;
+            --white: #FFFFFF;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+        }
+
+        /* Navbar Styles */
+        .nav2 {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav2-left h1 {
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .nav2-left h1 span {
+            color: var(--secondary);
+        }
+
+        .nav2-left .tagline {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Search Form */
+        .search-form {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 2rem;
+            display: flex;
+        }
+
+        .search-form input[type="text"] {
+            flex: 1;
+            border: 2px solid #E0E0E0;
+            border-radius: 25px 0 0 25px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-form input[type="text"]:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .search-form button {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 0 25px 25px 0;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-form button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Auth and Cart Buttons */
+        .nav2-right {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .auth-button, .cart-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .auth-button {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .auth-button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .cart-button {
+            background-color: var(--secondary);
+            color: var(--white);
+        }
+
+        .cart-button:hover {
+            background-color: #FF5252;
+        }
+
+        /* Navigation Menu */
+        .nav3 {
+            background-color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav3 ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav3 ul li a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav3 ul li a:hover {
+            color: var(--primary);
+            background-color: rgba(107, 78, 230, 0.1);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-left i {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-right p {
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav2 {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .search-form {
+                margin: 1rem 0;
+                width: 100%;
+            }
+
+            .nav2-right {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav3 ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
 <body>
     <header>
-  <body>
-    <header>
-       <nav class="nav1" style="background-color: ##8288b3; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 10px;">
-        <div class="left">
-            {% if user.is_authenticated %}
-                <h6 style="margin: 0;"><a href="{% url 'logout' %}" style="text-decoration: none; color: #fff;">Logout</a></h6>
-            {% else %}
-                <h6 style="margin: 0;"><a href="{% url 'auth' %}" style="text-decoration: none; color: #fff;">Login and register</a></h6>
-            {% endif %}
-        </div>
-        <div class="right" style="  color: #fff;">
-            <i class="fa fa-facebook" style="  color: #fff;" > </i>
-            <i class="fa fa-whatsapp" style="  color: #fff;"></i>
-            <i class="fa fa-instagram" style="  color: #fff;"></i>
-        </div>
-    </nav>
+        <nav class="nav2">
+            <div class="nav2-left">
+                <h1> <span>GrocerEase</span></h1>
+                <p class="tagline">Making gift-giving a breeze!</p>
+            </div>
 
-        <!--  nav1 sakkyo -->
-        <!--  nav2 suru -->
-     
+            <form action="{% url 'search' %}" method="get" class="search-form">
+                <input type="text" placeholder="Search for gifts..." name="search" id="search">
+                <button type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
 
-<nav class="nav2" style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: #a6adcc;">
-    <div class="nav2-left" style="text-align: center;">
-        <h1 style=" font-size: 50px;">Upahar<span style="font-size: 50px;">Nepal</span></h1>
-    </div>
-    <form action="/search/" method="get">
-        <div class="between" style="display: flex; align-items: center;">
-            <input type="text" placeholder="Search..." name="search" id="search" style="padding: 10px 250px; font-size: 16px;">
-            <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Search</button>
-        </div>
-    </form>
-    <div class="nav2-right">
-        <a href="{% url 'cart' %}" class="cart-button" style="text-decoration: none;">
-            <i class="fa fa-shopping-cart"></i> View Cart
-        </a>
-
-    </div>
-</nav>
-
-
-
-        
-
-        
+            <div class="nav2-right">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="auth-button">
+                        <i class="fa fa-sign-out"></i> Logout
+                    </a>
+                {% else %}
+                    <a href="{% url 'auth' %}" class="auth-button">
+                        <i class="fa fa-user"></i> Login/Register
+                    </a>
+                {% endif %}
+                <a href="{% url 'cart' %}" class="cart-button">
+                    <i class="fa fa-shopping-cart"></i> View Cart
+                </a>
+            </div>
         </nav>
 
-        <!-- naya nav suru hunxa yaha bata -->
-<nav class="nav3">
-      <ul>
-                <li><a href="{% url 'index' %}"><i class="fa fa-home"></i>Home </a></li>
-                <li><a href="{% url 'product' %}"><i class=""></i> Categories</a></li>
-                <li><a href="{% url 'help' %}"><i class=""></i>Help</a></li>
-                <li><a href="{% url 'about' %}"><i class=""></i>About us </a></li>
-                <li><a href="{% url 'userprofile' %}"><i class=""></i> My profile</a></li>
+        <nav class="nav3">
+            <ul>
+                <li><a href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="{% url 'product' %}"><i class="fa fa-th-large"></i> Categories</a></li>
+                <li><a href="{% url 'help' %}"><i class="fa fa-question-circle"></i> Help</a></li>
+                <li><a href="{% url 'about' %}"><i class="fa fa-info-circle"></i> About us</a></li>
+                <li><a href="{% url 'userprofile' %}"><i class="fa fa-user-circle"></i> My Profile</a></li>
             </ul>
         </nav>
-
     </header>
   <body>
-  
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
@@ -90,7 +270,7 @@
                 <h3 style="color: #333;">Categories</h3>
                 <div class="filter-btn-group">
                     <a href="/product/ "> <button class="filter-btn active" data-filter="all">All</button> </a>
-                    
+
                     {% for category in categories %}
                       <a href="/product/?category={{ category.id }}" > <button class="filter-btn" data-filter="{{ category.id }}">{{ category.model_name }}</button> </a>
                     {% endfor %}
@@ -100,7 +280,7 @@
     </div>
 </div>
 
-        
+
         <div class="col-md-9">
             <div class="mt-3" style="background-color: #f8f9fa; padding: 10px;">
                 <h3 style="color: #333;">For You</h3>
@@ -109,7 +289,7 @@
             <div style="margin-bottom: 20px;"></div>
         </div>
     </div>
-    
+
      <div class="container">
             <div class="row flex-row"> <!-- Changed class to flex-row -->
                 {% for prod in products %}
@@ -128,7 +308,7 @@
         <form action="{% url 'checkout' %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="product_id" value="{{ product.id }}">
-      
+
         </form>
           </div>
                                 <div class="col-md-6">
@@ -149,9 +329,9 @@
 </div>
 
 <style>
-   
+
     .categories-section { background-color: #f8f9fa; padding: 20px; margin-bottom: 20px; border-radius: 5px; }
-   
+
    .filter-btn-group {
     display: flex;
     flex-wrap: wrap;
@@ -197,7 +377,7 @@
         $('.add-to-cart').click(function(e) {
             e.preventDefault();
             var productId = $(this).closest('.add-to-cart-form').data('product-id');
-            
+
             $.ajax({
                 type: 'POST',
                 url: '/cart/add/' + productId + '/',
@@ -216,7 +396,7 @@
                 }
             });
         });
-        
+
         function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -235,13 +415,20 @@
     });
 </script>
 
+ <footer class="footer" style="display: flex; justify-content: center; align-items: center; width: 100%; padding: 20px;">
+    <div class="footer-left" style="display: flex; flex-direction: column; align-items: center; margin-right: 20px;">
+        <div class="social-icons" style="margin-bottom: 10px;">
+            <i class="fa fa-facebook" style="margin: 0 10px;"></i>
+            <i class="fa fa-whatsapp" style="margin: 0 10px;"></i>
+            <i class="fa fa-instagram" style="margin: 0 10px;"></i>
+        </div>
+        <div style="margin: 5px 0;"><i class="fa fa-phone"></i> +977 9840259838</div>
+        <div style="margin: 5px 0;"><i class="fa fa-envelope"></i> GrocerEase.com</div>
+    </div>
+    <div class="footer-right" style="display: flex; justify-content: center; align-items: center;">
+        <p style="margin: 0;">&copy; 2025 GrocerEase. All rights reserved.</p>
+    </div>
+</footer>
 
-<footer class="footer">
-        <div class="footer-left">
-            <i class="fa fa-phone"></i>+977 9840259838
-            <i class="fa fa-envelope"></i>upahar@gmail.com
-        </div>
-        <div class="footer-right">
-            <p>&copy; 2024 Upahar Nepal. All rights reserved.</p>
-        </div>
-    </footer>
+</body>
+</html>

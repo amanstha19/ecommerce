@@ -4,159 +4,248 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upahar</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>GharKoSathi - Making Gift-Giving a Breeze</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
-       /* Common styles */
-.auth-button,
-.cart-button {
-    padding: 8px 16px;
-    color: #fff;
-    border-radius: 4px;
-    text-decoration: none;
-}
+        :root {
+            --primary: #6B4EE6;
+            --primary-dark: #5740B3;
+            --secondary: #FF6B6B;
+            --tertiary: #4ECDC4;
+            --background: #F8F9FA;
+            --text: #2D3436;
+            --light-text: #636E72;
+            --white: #FFFFFF;
+        }
 
-.auth-button:hover {
-    background-color: #45a049; /* Darker Green */
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
-.cart-button:hover {
-    background-color: #0073e6; /* Darker Blue */
-}
+        body {
+            background-color: var(--background);
+        }
 
-.nav2-left {
-    display: flex;
-    align-items: center;
-}
+        /* Navbar Styles */
+        .nav2 {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.logo {
-    margin-right: 10px;
-}
+        .nav2-left h1 {
+            color: var(--primary);
+            font-size: 2rem;
+        }
 
-.logo img {
-    width: 50px;
-    height: auto;
-    border-radius: 50%;
-    overflow: hidden;
-}
+        .nav2-left h1 span {
+            color: var(--secondary);
+        }
 
-.nav2-left h1 {
-    font-size: 40px;
-    margin-bottom: 5px; /* Add margin at the bottom */
-}
+        .nav2-left .tagline {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
 
-.nav2-left p {
-    font-size: 14px; /* Set smaller font size for the additional text */
-    color: #555; /* Adjust text color */
-}
+        /* Search Form */
+        .search-form {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 2rem;
+            display: flex;
+        }
 
-/* Specific styles for login/register button */
-.auth-button {
-    background-color: #4CAF50; /* Green */
-}
+        .search-form input[type="text"] {
+            flex: 1;
+            border: 2px solid #E0E0E0;
+            border-radius: 25px 0 0 25px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
 
-/* Specific styles for view cart button */
-.cart-button {
-    background-color: #008CBA; /* Blue */
-}
+        .search-form input[type="text"]:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
 
-/* Styles for the navbar */
-.nav2 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px; /* Increase the padding for height */
-    background-color: #8399ee;
-}
-/* Adjusted CSS for navbar height */
-.nav2 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 10px; /* Increased padding for height */
-    background-color: #8399ee;
-}
+        .search-form button {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 0 25px 25px 0;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-/* Common styles for the search bar and button */
-.search-form {
-    display: flex;
-}
+        .search-form button:hover {
+            background-color: var(--primary-dark);
+        }
 
-.search-form input[type="text"] {
-    padding: 10px 200px; /* Adjust the padding as needed */
-    font-size: 16px;
-    color: #000;
-    min-width: 300px; /* Adjust the minimum width as needed */
-    width: calc(100% - 40px); /* Set width to fill available space, considering padding */
-    border-radius: 20px 0 0 20px;
-    border: 1px solid #ccc;
-}
-.search-form button[type="submit"] {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 0 20px 20px 0;
-    cursor: pointer;
-}
+        /* Auth and Cart Buttons */
+        .nav2-right {
+            display: flex;
+            gap: 1rem;
+        }
 
+        .auth-button, .cart-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-.nav2-right button[type="submit"]:hover {
-    background-color: #0056b3; /* Darker Blue */
-}
+        .auth-button {
+            background-color: var(--primary);
+            color: var(--white);
+        }
 
-/* Adjusted styles for the login/register button */
-.auth-button {
-    background-color: #4CAF50; /* Green */
-}
+        .auth-button:hover {
+            background-color: var(--primary-dark);
+        }
 
-/* Adjusted styles for the view cart button */
-.cart-button {
-    background-color: #008CBA; /* Blue */
-}
+        .cart-button {
+            background-color: var(--secondary);
+            color: var(--white);
+        }
 
-.tagline {
-    font-size: 16px;
-    color: #555;
-    margin-top: -10px; /* Adjust margin as needed */
-}
+        .cart-button:hover {
+            background-color: #FF5252;
+        }
 
-</style>
+        /* Navigation Menu */
+        .nav3 {
+            background-color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav3 ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav3 ul li a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav3 ul li a:hover {
+            color: var(--primary);
+            background-color: rgba(107, 78, 230, 0.1);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-left i {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-right p {
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav2 {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .search-form {
+                margin: 1rem 0;
+                width: 100%;
+            }
+
+            .nav2-right {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav3 ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav class="nav2">
-            <!-- <div class="nav2-left">
-                <div class="logo">
-                    <img src="logo.png" alt="Logo">
-                </div> -->
-                <div>
-                    <h1>Upahar<span>Nepal</span></h1>
-                    <p class="tagline">Making gifts-giving a breeze!</p>
-                </div>
+            <div class="nav2-left">
+                <h1><span>GrocerEase</span></h1>
+                <p class="tagline">Making gift-giving a breeze!</p>
             </div>
-<form action="/search/" method="get" class="search-form">
-        <input type="text" placeholder="Search..." name="search" id="search">
-        <button type="submit">
-            <i class="fa fa-search"></i>
-        </button>
-    </form>
 
-         
-         
-            
+            <form action="{% url 'search' %}" method="get" class="search-form">
+                <input type="text" placeholder="Search for gifts..." name="search" id="search">
+                <button type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+
             <div class="nav2-right">
                 {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="auth-button" style="text-decoration: none; color: #fff;">Logout</a>
+                    <a href="{% url 'logout' %}" class="auth-button">
+                        <i class="fa fa-sign-out"></i> Logout
+                    </a>
                 {% else %}
-                <a href="{% url 'auth' %}" class="auth-button" style="text-decoration: none; color: #fff;">Login/Register</a>
+                    <a href="{% url 'auth' %}" class="auth-button">
+                        <i class="fa fa-user"></i> Login/Register
+                    </a>
                 {% endif %}
-                <a href="{% url 'cart' %}" class="cart-button" style="text-decoration: none;">
+                <a href="{% url 'cart' %}" class="cart-button">
                     <i class="fa fa-shopping-cart"></i> View Cart
                 </a>
             </div>
@@ -164,31 +253,34 @@
 
         <nav class="nav3">
             <ul>
-                <li><a href="{% url 'index' %}"><i class="fa fa-home"></i>Home </a></li>
-                <li><a href="{% url 'product' %}"><i class=""></i> Categories</a></li>
-                <li><a href="{% url 'help' %}"><i class=""></i>Help</a></li>
-                <li><a href="{% url 'about' %}"><i class=""></i>About us </a></li>
-                <li><a href="{% url 'userprofile' %}"><i class=""></i> My profile</a></li>
+                <li><a href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="{% url 'product' %}"><i class="fa fa-th-large"></i> Categories</a></li>
+                <li><a href="{% url 'help' %}"><i class="fa fa-question-circle"></i> Help</a></li>
+                <li><a href="{% url 'about' %}"><i class="fa fa-info-circle"></i> About us</a></li>
+                <li><a href="{% url 'userprofile' %}"><i class="fa fa-user-circle"></i> My Profile</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="container " style="margin-left: 30px; margin-right: 30px">
+    <div class="container">
         {% block content %}
-    {% endblock %}
- </div>
-    
-    <footer class="footer">
-        <div class="footer-left">
-            <i class="fa fa-facebook" style="color: #fff;"></i>
-            <i class="fa fa-whatsapp" style="color: #fff;"></i>
-            <i class="fa fa-instagram" style="color: #fff;"></i><br><br>
-            <i class="fa fa-phone"></i>+977 9840259838<br><br>
-            <i class="fa fa-envelope"></i>upahar@gmail.com
+        {% endblock %}
+    </div>
+
+ <footer class="footer" style="display: flex; justify-content: center; align-items: center; width: 100%; padding: 20px;">
+    <div class="footer-left" style="display: flex; flex-direction: column; align-items: center; margin-right: 20px;">
+        <div class="social-icons" style="margin-bottom: 10px;">
+            <i class="fa fa-facebook" style="margin: 0 10px;"></i>
+            <i class="fa fa-whatsapp" style="margin: 0 10px;"></i>
+            <i class="fa fa-instagram" style="margin: 0 10px;"></i>
         </div>
-        <div class="footer-right">
-            <p>&copy; 2024 Upahar Nepal. All rights reserved.</p>
-        </div>
-    </footer>
+        <div style="margin: 5px 0;"><i class="fa fa-phone"></i> +977 9840259838</div>
+        <div style="margin: 5px 0;"><i class="fa fa-envelope"></i> GrocerEase.com</div>
+    </div>
+    <div class="footer-right" style="display: flex; justify-content: center; align-items: center;">
+        <p style="margin: 0;">&copy; 2025 GrocerEase. All rights reserved.</p>
+    </div>
+</footer>
+
 </body>
 </html>

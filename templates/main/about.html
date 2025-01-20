@@ -5,50 +5,62 @@
 {% load static %}
 <style>
     body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 50px;
-}
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 50px;
+        text-align: center;
+    }
 
-.content {
-    flex: 1;
-    margin-right: 50px;
-}
+    .content {
+        max-width: 800px;
+        margin-bottom: 30px;
+    }
 
-.illustration img {
-    max-width: 100%;
-    height: auto;
-    ;
-}
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #333;
+    }
 
+    p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .illustration {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+    }
+
+    .illustration img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 </style>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <div class="content">
-            <h1>About Us</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non diam at dolor sodales maximus. Sed in ligula nec eros hendrerit vehicula. Mauris id felis vitae eros varius mattis. Duis auctor arcu sit amet ligula fermentum, id facilisis lectus vestibulum. Nulla facilisi.</p>
-            <p>Nulla facilisi. Sed ut nunc ligula. Vestibulum non feugiat eros, sit amet rutrum ipsum. Nullam eget nunc a elit consequat dictum. Cras a elit non dui tristique consequat. Nam sit amet consequat turpis. Phasellus vel magna eget lectus fringilla vulputate non sit amet dolor.</p>
-        </div>
-        <div class="illustration">
-            <!-- Insert your illustration here -->
-            <img src="{% static 'images/about.png' %}" alt="Illustration">
-        </div>
+
+<div class="container">
+    <div class="content">
+        <h1>About Us</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non diam at dolor sodales maximus. Sed in ligula nec eros hendrerit vehicula. Mauris id felis vitae eros varius mattis. Duis auctor arcu sit amet ligula fermentum, id facilisis lectus vestibulum. Nulla facilisi.</p>
+        <p>Nulla facilisi. Sed ut nunc ligula. Vestibulum non feugiat eros, sit amet rutrum ipsum. Nullam eget nunc a elit consequat dictum. Cras a elit non dui tristique consequat. Nam sit amet consequat turpis. Phasellus vel magna eget lectus fringilla vulputate non sit amet dolor.</p>
     </div>
-</body>
-</html>
+    <div class="illustration">
+        <img src="{% static 'images/about.png' %}" alt="Illustration">
+    </div>
+</div>
+
 {% endblock %}

@@ -3,65 +3,218 @@
 {% block content %}
 {% load static %}
 
-<!-- HTML for Filter Options -->
-<div class="filter-container">
-    <label for="category-filter">Filter by Category:</label>
-    <select id="category-filter">
-        <option value="">All Categories</option>
-        <option value="electronics">Electronics</option>
-        <option value="clothing">Clothing</option>
-        <option value="home">Home & Kitchen</option>
-        <!-- Add more categories as needed -->
-    </select>
+<style>
+    /* Filter Styles */
+    .filter-container {
+        background-color: var(--white);
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+    }
 
-    <label for="price-filter">Price Range:</label>
-    <input type="number" id="min-price" placeholder="Min Price">
-    <input type="number" id="max-price" placeholder="Max Price">
+    .filter-container label {
+        display: block;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
 
-    <button id="apply-filter">Apply Filter</button>
-</div>
- 
-  <div class="slider-container">
-    <div class="slider">
-        <img src="{% static 'images/sss.jpeg' %}" alt="">
-        <img src="{% static 'images/img.jpg' %}" alt="">
+    .filter-container select,
+    .filter-container input[type="number"] {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #E0E0E0;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .filter-container button {
+        background-color: var(--primary);
+        color: var(--white);
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-weight: 600;
+    }
+
+    .filter-container button:hover {
+        background-color: var(--primary-dark);
+    }
+
+    /* Slider Styles */
+    .slider-container {
+        background-color: var(--white);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+        position: relative;
+        height: 400px;
+    }
+
+    .slider {
+        display: flex;
+        transition: transform 0.3s ease;
+        height: 100%;
+    }
+
+    .slider img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .prev-slide,
+    .next-slide {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: var(--primary);
+        color: var(--white);
+        border: none;
+        border-radius: 25px;
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        z-index: 10;
+    }
+
+    .prev-slide {
+        left: 1rem;
+    }
+
+    .next-slide {
+        right: 1rem;
+    }
+
+    /* Product Grid */
+    .section-title {
+        color: var(--text);
+        margin: 2rem 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .product-card {
+        background-color: var(--white);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .product-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .product-detail {
+        padding: 1rem;
+    }
+
+    .product-detail h4 {
+        color: var(--text);
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    .product-price {
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .button-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+
+    .btn {
+        padding: 0.75rem;
+        border-radius: 4px;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-buy {
+        background-color: var(--secondary);
+        color: var(--white);
+        border: none;
+    }
+
+    .btn-cart {
+        background-color: transparent;
+        color: var(--secondary);
+        border: 2px solid var(--secondary);
+    }
+</style>
+
+<div class="page-content">
+    <!-- Filter Section -->
+    <div class="filter-container">
+        <label for="category-filter">Filter by Category:</label>
+        <select id="category-filter">
+            <option value="">All Categories</option>
+            <option value="electronics">Electronics</option>
+            <option value="clothing">Clothing</option>
+            <option value="home">Home & Kitchen</option>
+        </select>
+
+        <label for="min-price">Price Range:</label>
+        <input type="number" id="min-price" placeholder="Min Price">
+        <input type="number" id="max-price" placeholder="Max Price">
+
+        <button id="apply-filter">Apply Filter</button>
     </div>
-    <button class="prev-slide">Prev</button>
-    <button class="next-slide">Next</button>
-</div>
 
-<div class="clearfix"></div>
+    <!-- Slider Section -->
+    <div class="slider-container">
+        <div class="slider">
+            <img src="{% static 'images/sss.jpeg' %}" alt="Slide 1">
+            <img src="{% static 'images/img.jpg' %}" alt="Slide 2">
+        </div>
+        <button class="prev-slide">Previous</button>
+        <button class="next-slide">Next</button>
+    </div>
 
-   <h3> Just For you</h3>
-<div class="container">
-    <div class="row flex-row"> <!-- Changed class to flex-row -->
+    <!-- Products Section -->
+    <h2 class="section-title">Just For You</h2>
+    <div class="product-grid">
         {% for prod in products %}
-        <div class="col-lg-4 col-md-6 mb-4 product-card" data-category="{{ prod.category.id }}">
-            <div class="bg-white p-2 shadow-md">
-                <div class="text-center">
-                    <a href="detail.html">
-                        <img src="/{{ prod.image }}" alt="" class="product-image">
-                    </a>
-                </div>
-                <div class="detail p-2 product-detail">
-                    <h4>{{ prod.name | truncatechars:10 }}</h4>
-                    <h4>Rs {{ prod.price }}</h4> <!-- Added "Rs" prefix -->
-                    
-                    <div class="row pt-2">
-                        <div class="col-md-6">
-                            <form action="{% url 'cart' %}" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="product_id" value="{{ product.id }}">
-                                <button type="submit" class="btn mb-2 fw-bold w-100 btn-danger"> Buy now </button>
-                            </form>
-                        </div>
-                        <div class="col-md-6">
-                            <form class="add-to-cart-form" data-product-id="{{ prod.id }}">
-                                {% csrf_token %}
-                                <button type="button" class="add-to-cart btn fw-bold w-100 btn-outline-danger">Add to cart </button>
-                            </form>
-                        </div>
-                    </div>
+        <div class="product-card" data-category="{{ prod.category.id }}">
+            <img src="/{{ prod.image }}" alt="{{ prod.name }}" class="product-image">
+            <div class="product-detail">
+                <h4>{{ prod.name | truncatechars:20 }}</h4>
+                <div class="product-price">Rs. {{ prod.price }}</div>
+                <div class="button-group">
+                    <form action="{% url 'cart' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ prod.id }}">
+                        <button type="submit" class="btn btn-buy">Buy Now</button>
+                    </form>
+                    <form class="add-to-cart-form" data-product-id="{{ prod.id }}">
+                        {% csrf_token %}
+                        <button type="button" class="btn btn-cart add-to-cart">Add to Cart</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -69,203 +222,46 @@
     </div>
 </div>
 
-<div class="clearfix"></div>
-</div>
-
-<style>
-     /* Your CSS styles here */
-     
-     
- .filter-container {
-    float: left; /* Align to the left side */
-    margin-right: 10px; /* Adjust margin for spacing */
-    margin-left: 50px;
-}
-
-.filter-container label,
-.filter-container select,
-.filter-container input[type="number"],
-.filter-container button {
-    display: block; /* Each element on a new line */
-    margin-bottom: 10px; /* Add vertical spacing */
-    font-size: 20px; /* Match font size with navbar */
-    color: #555; /* Adjust text color */
-    font-family: Arial, sans-serif;
-}
-
-.filter-container button {
-    padding: 8px 16px; /* Match padding with navbar buttons */
-    background-color: #4CAF50; /* Green, match with auth-button */
-    color: #fff; /* Button text color */
-    border: none; /* Remove border */
-    border-radius: 4px; /* Match border-radius with navbar buttons */
-    cursor: pointer; /* Change cursor to pointer */
-    transition: background-color 0.3s ease; /* Add transition effect */
-}
-
-.filter-container button:hover {
-    background-color: #45a049; /* Darker Green, match with auth-button:hover */
-}
-
-    .slider-container {
-    
-    
-       margin-top:15px;
-       margin-bottom:30px;
-       margin-right: 15px;
-       
-       float: right;
-        position: relative; /* Ensure the buttons are positioned relative to the container */
-        width: 70%; /* Adjust width as needed */
-    
-       
-        overflow: hidden;
-   
-    }
-
-    .slider {
-        position: relative;
-        display: flex;
-        height:300px;
-        width: 200%; /* Set to 200% to accommodate two images */
-        transform: translateX(-50px); /* Shift the content 50 pixels to the left */
-       transition: transform 0.3s ease;
-    }
-    
-
-    .slider img {
-        object-fit: cover;
-        width: 50%; /* Ensure images take half the width of slider */
-        height: auto; /* Maintain aspect ratio */
-    }
-.clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-    .prev-slide,
-    .next-slide {
-        position: absolute; /* Position buttons absolutely */
-        top: 90%; /* Align buttons vertically in the middle */
-        transform: translateY(-50%); /* Center vertically */
-        background-color: #007bff; /* Button background color */
-        color: #fff; /* Button text color */
-        border: none; /* Remove border */
-        border-radius: 5px; /* Add border radius */
-        padding: 10px 20px; /* Add padding */
-        cursor: pointer; /* Change cursor to pointer */
-        transition: background-color 0.3s ease; /* Add transition effect */
-    }
-
-    .prev-slide {
-        left: 10px; /* Position left */
-    }
-
-    .next-slide {
-        right: 10px; /* Position right */
-    }
-
-    .prev-slide:hover,
-    .next-slide:hover {
-        background-color: #0056b3; /* Change background color on hover */
-    }
- 
-    body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-    .filter-btn-group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px; /* Adjust as needed */
-    }
-
-    .filter-btn {
-        padding: 8px 15px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .filter-btn:hover {
-        background-color: #0056b3;
-    }
-
-   .flex-row {
-    display: flex;
-    flex-wrap: wrap;
-
-}
-
-.product-card {
-    margin: 0; /* Ensure no margin is applied */
-    padding: 8px 15px; /* Adjust padding */
-    flex: 0 0 calc(20% - 2px); /* Adjust as needed */
-}
-
-.featured-products {
-    text-align: center; /* Center the text */
-    padding: 50px; /* Add padding for spacing */
-}
-
-    .product-image {
-        width: 90%; /* Ensure the image doesn't exceed the container width */
-        max-height: 150px; /* Allow the height to adjust dynamically based on the image's aspect ratio */
-        object-fit: contain; /* Fit the entire image within the container, maintaining aspect ratio */
-        margin-bottom: 10px; /* Add some bottom margin */
-    }
-    .featured-products justify-content:{
-        text-align: center; /* Center justify the content */
-        padding: 50px; /* Add padding for spacing */
-    }
-
-    .featured-products p {
-        max-width: 600px; /* Limit the width of the text */
-        margin: 0 auto 20px; /* Center the text and add space below */
-    }
-
-    .featured-image {
-        display: block; /* Ensure the image is a block element */
-        margin: 0 auto; /* Center the image */
-        max-width: 100%; /* Make sure the image doesn't exceed its container */
-        width: 100px;
-        height: auto;
-    }
-</style>
-
 <script>
-    
-     $(document).ready(function() {
-    $('#apply-filter').click(function() {
-        var category = $('#category-filter').val();
-        var minPrice = $('#min-price').val();
-        var maxPrice = $('#max-price').val();
-        
-        // Send AJAX request to the server with filter parameters
-        $.ajax({
-            url: '/products/filter/',
-            type: 'GET',
-            data: {
-                category: category,
-                minPrice: minPrice,
-                maxPrice: maxPrice
-            },
-            success: function(data) {
-                // Update the product list with filtered results
-                $('#product-list').html(data);
-            },
-            error: function(xhr, textStatus, errorThrown) {
-                console.error('Error applying filter:', errorThrown);
-            }
-        });
-    });
-});
-
     $(document).ready(function() {
+        // Filter functionality
+        $('#apply-filter').click(function() {
+            var category = $('#category-filter').val();
+            var minPrice = $('#min-price').val();
+            var maxPrice = $('#max-price').val();
+            
+            $.ajax({
+                url: '/products/filter/',
+                type: 'GET',
+                data: {
+                    category: category,
+                    minPrice: minPrice,
+                    maxPrice: maxPrice
+                },
+                success: function(data) {
+                    $('#product-list').html(data);
+                }
+            });
+        });
+
+        // Slider functionality
+        var slideIndex = 0;
+        function showSlide(n) {
+            var slides = $(".slider img");
+            if (n >= slides.length) {slideIndex = 0}
+            if (n < 0) {slideIndex = slides.length - 1}
+            $(".slider").css("transform", "translateX(" + (-100 * slideIndex) + "%)");
+        }
+
+        $(".prev-slide").click(function() {
+            showSlide(--slideIndex);
+        });
+
+        $(".next-slide").click(function() {
+            showSlide(++slideIndex);
+        });
+
+        // Add to cart functionality
         $('.add-to-cart').click(function(e) {
             e.preventDefault();
             var productId = $(this).closest('.add-to-cart-form').data('product-id');
@@ -273,63 +269,15 @@
             $.ajax({
                 type: 'POST',
                 url: '/cart/add/' + productId + '/',
-                dataType: 'json',
-                beforeSend: function(xhr, settings) {
-                    var csrftoken = getCookie('csrftoken');
-                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                },
+                headers: {'X-CSRFToken': $('[name=csrfmiddlewaretoken]').val()},
                 success: function(data) {
-                    console.log('Item added to cart successfully');
-                    // Optionally, update the cart count or show a success message
+                    alert('Item added to cart successfully');
                 },
                 error: function(xhr, textStatus, errorThrown) {
-                    console.error('Error adding item to cart:', errorThrown);
-                    // Handle errors if any
+                    alert('Error adding item to cart');
                 }
             });
         });
-        
-        function getCookie(name) {
-            var cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = cookies[i].trim();
-                    // Does this cookie string begin with the name we want?
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-    });
-    
-    $(document).ready(function() {
-        var slideIndex = 0; // Initialize slide index
-
-        // Function to show slide
-        function showSlide(n) {
-            var slides = $(".slider img");
-            if (n >= slides.length) {slideIndex = 0}
-            if (n < 0) {slideIndex = slides.length - 1}
-            $(".slider").css("transform", "translateX(" + (-50 * slideIndex) + "%)");
-        }
-
-        // Show first slide
-        showSlide(slideIndex);
-
-        // Click event for previous button
-        $(".prev-slide").click(function() {
-            showSlide(--slideIndex);
-        });
-
-        // Click event for next button
-        $(".next-slide").click(function() {
-            showSlide(++slideIndex);
-        });
     });
 </script>
-
 {% endblock %}

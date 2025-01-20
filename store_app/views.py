@@ -208,26 +208,7 @@ def userprofile(request):
     return render(request, 'main/userprofile.html', context)
 
 
-def checkout(request):
-    if request.method == "POST":
-        try:
 
-
-
-            cart_items = Cart.objects.filter(user=request.user)
-            total_price = sum(item.product.price * item.quantity for item in cart_items)
-
-
-
-            # Render the checkout page with a thank you message, order ID, and total price
-            return render(request, 'register/success.html', {'thank': True, 'id': order.id, 'total_price': total_price})
-
-        except Exception as e:
-            # Handle any errors that occur during form submission
-            return render(request, 'register/checkout.html', {'error_message': str(e)})
-
-    # Render the checkout page if the request method is not POST
-    return render(request, 'register/checkout.html')
 def update_total_price(request):
     # Check if the request is a POST request and has the 'HTTP_X_REQUESTED_WITH' header set to 'XMLHttpRequest'
     if request.method == "POST" and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
@@ -243,9 +224,6 @@ def update_total_price(request):
 
 
 
-def place_order(request):
-
-    return HttpResponse("Order placed successfully")
 
 from django.shortcuts import render
 
@@ -263,3 +241,72 @@ def about(request):
 
 
 
+@login_required
+def checkout(request):
+    if request.method == "POST":
+        try:
+            # Assuming the cart is stored in session
+            cart = Cart(request)
+            cart_items = cart.get_items()  # You would need to create a method `get_items()` that returns the items in the cart
+            total_price = sum(item['product'].price * item['quantity'] for item in cart_items)
+
+            # Create an Order
+            order = Order.objects.create(
+                user=request.user,
+                total_price=total_price,
+                status='Pending'  # Or whatever status you want
+            )
+
+            # Create OrderItems for each product in the cart
+            for item in cart_items:
+                OrderItem.objects.create(
+                    order=order,
+                    product=item['product'],
+                    quantity=item['quantity'],
+                    price=item['product'].price
+                )
+
+            # Clear the cart after order placement (optional)
+            cart.clear()
+
+            # Redirect to success page with order details
+            return render(request, 'register/success.html', {
+                'thank': True,
+                'id': order.id,
+                'total_price': total_price
+            })
+
+        except Exception as e:
+            return render(request, 'register/checkout.html', {'error_message': str(e)})
+
+    # Render checkout page if request method is not POST
+    return render(request, 'register/checkout.html')
+
+
+@login_required
+def place_order(request):
+    # If you want this to handle order placement in some way
+    cart = Cart(request)
+    cart_items = cart.get_items()  # Retrieve cart items
+    total_price = sum(item['product'].price * item['quantity'] for item in cart_items)
+
+    # Create an order
+    order = Order.objects.create(
+        user=request.user,
+        total_price=total_price,
+        status='Pending'
+    )
+
+    # Create OrderItems for each product
+    for item in cart_items:
+        OrderItem.objects.create(
+            order=order,
+            product=item['product'],
+            quantity=item['quantity'],
+            price=item['product'].price
+        )
+
+    # Clear the cart
+    cart.clear()
+
+    return HttpResponse("Order placed successfully!")
